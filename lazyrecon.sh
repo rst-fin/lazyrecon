@@ -7,7 +7,7 @@
 #
 # 
 ########################################
-auquatoneThreads=5
+aquatoneThreads=5
 subdomainThreads=10
 dirsearchThreads=50
 dirsearchWordlist=~/tools/dirsearch/db/dicc.txt
@@ -127,13 +127,13 @@ recon(){
 dirsearcher(){
 
 echo "Starting dirsearch..." 
-cat ./$domain/$foldername/urllist.txt | xargs -P$subdomainThreads -I % sh -c "python3 ~/tools/dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w $dirsearchWordlist -t $dirsearchThreads -u % | grep Target && tput sgr0 && ./lazyrecon.sh -r $domain -r $foldername -r %"
+cat ./$domain/$foldername/urllist.txt | xargs -P$subdomainThreads -I % sh -c "python3 ~/tools/dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w $dirsearchWordlist -t $dirsearchThreads -u % | grep Target && tput sgr0 && ~/tools/lazyrecon/lazyrecon.sh -r $domain -r $foldername -r %"
 }
 
 aqua(){
 
 echo "Starting aquatone scan..."
-cat ./$domain/$foldername/urllist.txt | aquatone -chrome-path $chromiumPath -out ./$domain/$foldername/aqua_out -threads $auquatoneThreads -silent
+cat ./$domain/$foldername/urllist.txt | aquatone -chrome-path $chromiumPath -out ./$domain/$foldername/aqua_out -threads $aquatoneThreads -silent
 
 
 }
